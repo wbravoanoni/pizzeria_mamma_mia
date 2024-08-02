@@ -1,6 +1,7 @@
 {
   "name": "pizzeria_mamma_mia",
   "private": true,
+  "homepage":"https://wbravoanoni.github.io/pizzeria_mamma_mia/build",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
