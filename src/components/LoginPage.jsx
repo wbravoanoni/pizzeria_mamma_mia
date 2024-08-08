@@ -5,7 +5,6 @@ const LoginPage = () =>{
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const [error,setError] = useState(false);
-    const [exito,setExito] = useState(false);
     const [errorMensaje,setErrorMensaje] = useState('');
 
     const contrasenaCorrecta = 123456;
@@ -55,7 +54,6 @@ const LoginPage = () =>{
             <button className="btn btn-dark mt-4" type="submit">Ingresar</button>
 
             {error ? <div class="alert alert-danger mt-3" role="alert">{errorMensaje}</div> : null}
-            {exito ? <div class="alert alert-success mt-3" role="alert">Ingresando a la plataforma ...</div> : null}
 
         </form>
     );
