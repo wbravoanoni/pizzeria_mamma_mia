@@ -5,7 +5,7 @@ import LoginFalse from './navegacion/LoginFalse';
 const Nabvar = () =>{
     const total = 25000;
     let total_formateado = total.toLocaleString("es-CL");
-    const token = true;
+    const token = false;
     
     return (
         <div>
