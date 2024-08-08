@@ -16,21 +16,18 @@ const RegisterPage = () =>{
         if(email === '' || password1 === '' || password2 === '') {
             setError(true);
             setErrorMensaje('Todos los campos son obligatorios');
-            setEstiloAlerta('alert-danger');
             return;
         }
 
         if( password1.length <5){
             setError(true);
             setErrorMensaje('La contraseña debe tener minimo 6 carácteres');
-            setEstiloAlerta('alert-danger');
             return;
         }
 
         if( password1 !== password2  ){
             setError(true);
             setErrorMensaje('La contraseña debe ser iguales');
-            setEstiloAlerta('alert-danger');
             return;
         }
 
@@ -62,7 +59,7 @@ const RegisterPage = () =>{
             {error ? <div class="alert alert-danger mt-3" role="alert">{errorMensaje}</div> : null}
             {exito ? <div class="alert alert-success mt-3" role="alert">Registro creado correctamente</div> : null}
         </form>
-        
+
         );
 };
 
