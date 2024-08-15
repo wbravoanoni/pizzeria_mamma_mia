@@ -2,8 +2,8 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
 import Footer from './components/Footer'
-import RegisterPage from './components/RegisterPage'
-import LoginPage from './components/LoginPage'
+//import RegisterPage from './components/RegisterPage'
+//import LoginPage from './components/LoginPage'
 
 function App() {
 
@@ -13,7 +13,7 @@ function App() {
       <Navbar/>
       {/*<Home/>*/}
       {/*<RegisterPage/>*/}
-      <LoginPage/>
+      {/*<LoginPage/>*/}
       <Footer/>
     </div>
     </>
