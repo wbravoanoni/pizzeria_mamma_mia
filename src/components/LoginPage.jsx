@@ -53,7 +53,7 @@ const LoginPage = () =>{
 
             <button className="btn btn-dark mt-4" type="submit">Ingresar</button>
 
-            {error ? <div class="alert alert-danger mt-3" role="alert">{errorMensaje}</div> : null}
+            {error ? <div className="alert alert-danger mt-3" role="alert">{errorMensaje}</div> : null}
 
         </form>
     );

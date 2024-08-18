@@ -41,7 +41,7 @@ const RegisterPage = () =>{
 
     return(
         <form className="formulario" onSubmit={validarFormulario}>
-            <h1 class="my-4">Register Page</h1>
+            <h1 className="my-4">Register Page</h1>
             <div className="form-control">
                 <label className="form-label" htmlFor="email">Email:</label>
                 <input className="form-control" type="email" name="email" id="email" placeholder="Enter your email" onChange={ (e)=>setEmail(e.target.value) } value={email}/>
@@ -56,8 +56,8 @@ const RegisterPage = () =>{
             </div>
             <button className="btn btn-dark mt-2" type="submit">Enviar</button>
 
-            {error ? <div class="alert alert-danger mt-3" role="alert">{errorMensaje}</div> : null}
-            {exito ? <div class="alert alert-success mt-3" role="alert">Registro creado correctamente</div> : null}
+            {error ? <div className="alert alert-danger mt-3" role="alert">{errorMensaje}</div> : null}
+            {exito ? <div className="alert alert-success mt-3" role="alert">Registro creado correctamente</div> : null}
         </form>
 
         );

@@ -21,7 +21,7 @@ const CardPizza = (props) => {
                         <p className="fw-bold fs-4">Precio: <span>${precio_formateado}</span></p>
                         
                         <a href="#" className="btn btn-outline-secondary mx-2 px-3"><i class="fa-regular fa-eye me-2"></i>Ver más</a>    
-                        <a href="#" className="btn btn-outline-dark mx-2 px-3"><i class="fa-solid fa-cart-shopping me-2"></i>Añadir</a>
+                        <button onClick={ () => props.agregarAlCarrito(props.producto) } className="btn btn-outline-dark mx-2 px-3"><i class="fa-solid fa-cart-shopping me-2"></i>Añadir</button>
                     </div>
                 </div>
             </div>

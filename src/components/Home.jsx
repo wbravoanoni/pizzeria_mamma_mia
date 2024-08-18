@@ -3,21 +3,25 @@ import Header from './Header'
 import CardPizza from './CardPizza'
 import {pizzaCart} from '../assets/js/pizzas.js'
 
-const Home = () =>{
+const Home = ( {showCarrito,agregarAlCarrito} ) =>{
 
     return (
+       
         <div>
+            <button className="btn btn-primary my-4" onClick={showCarrito}>Ir al carrito</button>
             <Header/>
-                <div class="row">
+                <div className="row">
                 
 
-                {pizzaCart.map((tarea) => (
+                {pizzaCart.map((producto) => (
                     <CardPizza
-                        key={tarea.id}
-                        name={tarea.name}
-                        price={tarea.price}
-                        ingredients={tarea.ingredients}
-                        img={tarea.img}
+                        key={producto.id}
+                        name={producto.name}
+                        price={producto.price}
+                        ingredients={producto.ingredients}
+                        img={producto.img}
+                        agregarAlCarrito={agregarAlCarrito}
+                        producto={producto}
                     />
                 ))}
                 </div>
