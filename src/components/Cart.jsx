@@ -11,7 +11,7 @@ const Cart = ({showHome,carrito,aumentarCantidad,disminuirCantidad})=>{
             <div className="row">
                 <h1 className="text-center mb-4">Carrito</h1>
                     {carrito.map((producto) => (
-                    <ul>
+                    <ul key={producto.img}>
                         {producto.img ? (<li className="list-unstyled"><img src={producto.img} alt="" width={200}/></li>):(null) }  
                         {producto.name ? (<li className="list-unstyled">Pizza {producto.name}</li>) : (null) } 
                         {producto.price ? (<li className="list-unstyled">$ {producto.price * producto.cant }</li>) : (null) }  

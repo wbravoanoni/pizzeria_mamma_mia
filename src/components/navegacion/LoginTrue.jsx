@@ -5,7 +5,7 @@ const LoginTrue = (props) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-house-chimney-user me-2"></i>Home</a>
+                    <a className="nav-link active" aria-current="page" href="#"><i className="fa-solid fa-house-chimney-user me-2"></i>Home</a>
                 </li>
                 <li className="nav-item">
                     <a className="nav-link" href="#"><i className="fa-regular fa-user me-2"></i>Profile</a>
@@ -15,7 +15,7 @@ const LoginTrue = (props) => {
                 </li>
             </ul>
             <div className="d-flex" role="search">
-                <span className="text-white"><i class="fa-regular fa-money-bill-1 me-2"></i>Total: ${props.total}</span>
+                <span className="text-white"><i className="fa-regular fa-money-bill-1 me-2"></i>Total: ${props.total}</span>
             </div>
         </div>
     );
