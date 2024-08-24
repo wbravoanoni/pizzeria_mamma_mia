@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Cart from './components/Cart'
 import Footer from './components/Footer'
 import Home from './components/Home'
+import Pizza from './components/Pizza'
 import { useState } from 'react'
 import {pizzaCart} from './assets/js/pizzas'
 //import RegisterPage from './components/RegisterPage'
@@ -77,9 +78,10 @@ function App() {
       <Navbar carrito={carrito}/>
       {/*<RegisterPage/>*/}
       {/*<LoginPage/>*/}
-
+      
       {show ? ( <Cart showHome={showHome} carrito={carrito} agregarAlCarrito={agregarAlCarrito} eliminarDelCarrito={eliminarDelCarrito} aumentarCantidad={aumentarCantidad} disminuirCantidad={disminuirCantidad}/>) : (<Home showCarrito={showCarrito} agregarAlCarrito={agregarAlCarrito}/>) }
-
+      {/*<Pizza/>*/}
+      
       <Footer/>
     </div>
     </>

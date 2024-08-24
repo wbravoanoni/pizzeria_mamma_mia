@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import Header from './Header'
 import CardPizza from './CardPizza'
-import {pizzaCart} from '../assets/js/pizzas.js'
+//import {pizzaCart} from '../assets/js/pizzas.js'
 
 const Home = ( {showCarrito,agregarAlCarrito} ) =>{
+
+    const [productos,setProductos] = useState([]);
+
+    const url = "http://localhost:5000/api/pizzas";
+
+    const getData = async() => {
+        const response = await fetch(url);
+        const data = await response.json();
+        setProductos(data);
+    }
+    
+    useEffect( ()=>{
+        getData();
+    }, [] );
 
     return (
        
@@ -11,9 +25,8 @@ const Home = ( {showCarrito,agregarAlCarrito} ) =>{
             <button className="btn btn-primary my-4" onClick={showCarrito}>Ir al carrito</button>
             <Header/>
                 <div className="row">
-                
 
-                {pizzaCart.map((producto) => (
+                {productos.map((producto) => (
                     <CardPizza
                         key={producto.id}
                         name={producto.name}
