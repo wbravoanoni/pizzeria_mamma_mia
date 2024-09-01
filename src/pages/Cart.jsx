@@ -7,7 +7,6 @@ const Cart = ({showHome,carrito,aumentarCantidad,disminuirCantidad})=>{
 
     return(
         <div>
-            <button className="btn btn-primary my-4" onClick={showHome}>Ir al Home</button>
             <div className="row">
                 <h1 className="text-center mb-4">Carrito</h1>
                     {carrito.map((producto) => (

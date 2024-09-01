@@ -22,10 +22,8 @@ const Home = ( {showCarrito,agregarAlCarrito} ) =>{
     return (
        
         <div>
-            <button className="btn btn-primary my-4" onClick={showCarrito}>Ir al carrito</button>
             <Header/>
                 <div className="row">
-
                 {productos.map((producto) => (
                     <CardPizza
                         key={producto.id}
