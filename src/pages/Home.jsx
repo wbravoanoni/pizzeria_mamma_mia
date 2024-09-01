@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
-import Header from './Header'
-import CardPizza from './CardPizza'
+import Header from '../components/Header'
+import CardPizza from '../components/CardPizza'
 //import {pizzaCart} from '../assets/js/pizzas.js'
 
 const Home = ( {showCarrito,agregarAlCarrito} ) =>{

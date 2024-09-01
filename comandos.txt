@@ -1,3 +1,7 @@
 npm install gh-pages --save-dev
 
 npm run deploy
+
+npm install react-router-dom@6
+
+main -> <BrowserRouter><BrowserRouter/>

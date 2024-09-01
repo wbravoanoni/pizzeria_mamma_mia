@@ -1,13 +1,16 @@
 import './App.css'
-import Navbar from './components/Navbar'
-import Cart from './components/Cart'
-import Footer from './components/Footer'
-import Home from './components/Home'
-import Pizza from './components/Pizza'
+import { Route, Routes } from 'react-router-dom'
 import { useState } from 'react'
 import {pizzaCart} from './assets/js/pizzas'
-//import RegisterPage from './components/RegisterPage'
-//import LoginPage from './components/LoginPage'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import Home from './pages/Home'
+import RegisterPage from './pages/RegisterPage'
+import LoginPage from './pages/LoginPage'
+import Cart from './pages/Cart'
+import Pizza from './pages/Pizza'
+import NotFound from './pages/NotFound'
+import Profile from './pages/Profile'
 
 
 function App() {
@@ -74,16 +77,23 @@ function App() {
 
   return (
     <>
+
     <div className='container-fluid'>
-      <Navbar carrito={carrito}/>
-      {/*<RegisterPage/>*/}
-      {/*<LoginPage/>*/}
-      
-      {show ? ( <Cart showHome={showHome} carrito={carrito} agregarAlCarrito={agregarAlCarrito} eliminarDelCarrito={eliminarDelCarrito} aumentarCantidad={aumentarCantidad} disminuirCantidad={disminuirCantidad}/>) : (<Home showCarrito={showCarrito} agregarAlCarrito={agregarAlCarrito}/>) }
-      {/*<Pizza/>*/}
-      
+      <Navbar carrito={carrito}/>  
+        <Routes>
+          <Route path='/' element={<Home showCarrito={showCarrito} agregarAlCarrito={agregarAlCarrito}/>}/>
+          <Route path='/register' element={<RegisterPage/>}/>
+          <Route path='/login' element={<LoginPage/>}/>
+          <Route path='/cart' element={<Cart showHome={showHome} carrito={carrito} agregarAlCarrito={agregarAlCarrito} eliminarDelCarrito={eliminarDelCarrito} aumentarCantidad={aumentarCantidad} disminuirCantidad={disminuirCantidad}/>}/>
+          <Route path='/pizza/p001' element={<Pizza/>}/>
+          <Route path='/profile' element={<Profile/>}/>
+          <Route path='/404' element={<NotFound/>}/>
+          <Route path="*"  element={<NotFound/>}/>
+        </Routes>  
       <Footer/>
-    </div>
+      </div>
+    
+
     </>
   )
 }

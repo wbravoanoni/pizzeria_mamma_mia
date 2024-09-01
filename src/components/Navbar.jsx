@@ -1,6 +1,7 @@
 import React from "react";
 import LoginTrue from './navegacion/LoginTrue';
 import LoginFalse from './navegacion/LoginFalse';
+import { Link } from 'react-router-dom'
 
 const Nabvar = ({carrito}) =>{
     const total = carrito.reduce((acc, producto) => acc + producto.price * producto.cant, 0);;
