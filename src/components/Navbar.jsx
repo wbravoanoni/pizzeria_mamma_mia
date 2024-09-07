@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext }from "react";
 import LoginTrue from './navegacion/LoginTrue';
 import LoginFalse from './navegacion/LoginFalse';
 import { Link } from 'react-router-dom'
+import { CarritoContext } from '../context/CarritoContext';
 
 const Nabvar = ({carrito}) =>{
-    const total = carrito.reduce((acc, producto) => acc + producto.price * producto.cant, 0);;
+    const { total } = useContext(CarritoContext);
     let total_formateado = total.toLocaleString("es-CL");
     const token = false;
     

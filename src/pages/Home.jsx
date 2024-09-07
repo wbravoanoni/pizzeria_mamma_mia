@@ -1,23 +1,11 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useContext } from "react";
 import Header from '../components/Header'
 import CardPizza from '../components/CardPizza'
 //import {pizzaCart} from '../assets/js/pizzas.js'
+import { ApiContext } from '../context/ApiContext'
 
-const Home = ( {showCarrito,agregarAlCarrito} ) =>{
-
-    const [productos,setProductos] = useState([]);
-
-    const url = "http://localhost:5000/api/pizzas";
-
-    const getData = async() => {
-        const response = await fetch(url);
-        const data = await response.json();
-        setProductos(data);
-    }
-    
-    useEffect( ()=>{
-        getData();
-    }, [] );
+const Home = ( ) =>{
+    const {productos} = useContext(ApiContext)
 
     return (
        
@@ -31,7 +19,6 @@ const Home = ( {showCarrito,agregarAlCarrito} ) =>{
                         price={producto.price}
                         ingredients={producto.ingredients}
                         img={producto.img}
-                        agregarAlCarrito={agregarAlCarrito}
                         producto={producto}
                     />
                 ))}
