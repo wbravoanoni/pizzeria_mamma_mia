@@ -7,7 +7,7 @@ import { CarritoContext } from '../context/CarritoContext';
 const Nabvar = ({carrito}) =>{
     const { total } = useContext(CarritoContext);
     let total_formateado = total.toLocaleString("es-CL");
-    const token = false;
+    const token = true;
     
     return (
         <div>
