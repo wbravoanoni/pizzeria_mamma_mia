@@ -20,6 +20,7 @@ const Home = ( ) =>{
                         ingredients={producto.ingredients}
                         img={producto.img}
                         producto={producto}
+                        id={producto.id}
                     />
                 ))}
                 </div>

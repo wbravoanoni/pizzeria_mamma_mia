@@ -1,10 +1,17 @@
 
 import { useContext } from "react";
 import { CarritoContext } from "../context/CarritoContext";
+import { useNavigate } from "react-router-dom";
 
 const CardPizza = (props) => {
 
     const { agregarAlCarrito } = useContext(CarritoContext);
+
+    const navigate = useNavigate();
+
+    const irAPizza = (id) => {
+        navigate(`/pizza/${id}`);
+    };
 
     return(
             <div className="col-4">
@@ -20,8 +27,8 @@ const CardPizza = (props) => {
                         ))}
                         </ul>
                         <hr />
-                    
-                        <a href="#" className="btn btn-outline-secondary mx-2 px-3"><i className="fa-regular fa-eye me-2"></i>Ver más</a>    
+
+                        <button className="btn btn-outline-secondary mx-2 px-3" onClick={ () => irAPizza(props.id) }><i className="fa-regular fa-eye me-2"></i>Ver más</button>
                         <button onClick={ () => agregarAlCarrito(props.producto) } className="btn btn-outline-dark mx-2 px-3"><i className="fa-solid fa-cart-shopping me-2"></i>Añadir</button>
 
                     </div>

@@ -1,13 +1,21 @@
 
-import React, { useState,useEffect,useContext } from "react";
-import { ApiContextPizza } from '../context/ApiContextPizza'
-
-
+import React, { useState,useEffect } from "react";
+import { useParams } from "react-router-dom"
 
 const Pizza = () => {
-    const {pizza} = useContext(ApiContextPizza)
+    const [pizza, setPizza] = useState([])
+    const {id} = useParams()
 
-
+    const url = `http://localhost:5000/api/pizzas/${id}`;
+    const getData = async () => {
+        const response = await fetch(url);
+        const data = await response.json();
+        setPizza(data);
+    };
+    useEffect(() => {
+        getData();
+    }, []);
+    
     return (
         <div className="container">
             <div className="row">
