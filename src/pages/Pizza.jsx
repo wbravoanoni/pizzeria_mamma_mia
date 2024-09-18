@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom"
 const Pizza = () => {
     const [pizza, setPizza] = useState([])
     const {id} = useParams()
-
+    
     const url = `http://localhost:5000/api/pizzas/${id}`;
     const getData = async () => {
         const response = await fetch(url);
@@ -15,7 +15,7 @@ const Pizza = () => {
     useEffect(() => {
         getData();
     }, []);
-    
+
     return (
         <div className="container">
             <div className="row">

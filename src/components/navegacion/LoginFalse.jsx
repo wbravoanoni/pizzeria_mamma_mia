@@ -20,13 +20,11 @@ const LoginFalse = (props) => {
                 <NavLink className={ setActiveClass } to="/register">
                     Register
                 </NavLink>
-
             </ul>
-        <div className="d-flex" role="search">
-            <Link to='/cart' className="text-white nav-link px-3"><i class="fa-solid fa-cart-shopping mx-2" aria-hidden="true"><span className="text-white mx-2">Total: ${props.total}</span></i></Link> 
             
-            
-        </div>
+            <div className="d-flex" role="search">
+                <Link to='/cart' className="text-white nav-link px-3"><i className="fa-solid fa-cart-shopping mx-2" aria-hidden="true"><span className="text-white mx-2">Total: ${props.total}</span></i></Link>    
+            </div>
     </div>
     );
 }

@@ -3,11 +3,14 @@ import LoginTrue from './navegacion/LoginTrue';
 import LoginFalse from './navegacion/LoginFalse';
 import { Link } from 'react-router-dom'
 import { CarritoContext } from '../context/CarritoContext';
+import { UserContext }  from "../context/UserContext";
 
 const Nabvar = ({carrito}) =>{
     const { total } = useContext(CarritoContext);
     let total_formateado = total.toLocaleString("es-CL");
-    const token = true;
+    
+    const {user} = useContext(UserContext)
+    const token = user
     
     return (
         <div>

@@ -4,7 +4,13 @@ import React from "react";
 import { useContext } from "react";
 import { CarritoContext } from "../context/CarritoContext";
 
+import { UserContext }  from "../context/UserContext";
+
+
+
 const Cart = ()=>{
+
+    const { user,setUser } = useContext(UserContext);
 
     const {
         carrito,
@@ -37,7 +43,13 @@ const Cart = ()=>{
                                 {producto.name ? (<li onClick={ () => disminuirCantidad(producto) } className="list-unstyled btn btn-danger">Eliminar</li>) : (null) } 
                         
                             </ul>
-                            <p>Total: ${total_formateado}</p>
+                            <p className="d-block mx-auto">Total: ${total_formateado}</p>
+
+                            {(user ? <button className="btn btn-warning px-5 mt-5 d-block mx-auto">Pagar</button> : null)}
+
+                            
+
+                            
                         </div>
                     ))
                 )}

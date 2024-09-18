@@ -1,10 +1,26 @@
-import React from "react";
+import { useState, useContext,useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom'
 import '../../../src/App.css';
+import { UserContext }  from "../../context/UserContext";
+import { useNavigate } from 'react-router-dom';
 
 const LoginTrue = (props) => {
 
+    const { user,setUser } = useContext(UserContext);
+    const navigate = useNavigate();
+
     const  setActiveClass = ({ isActive }) => (isActive ? "active" : "default");
+
+    const logout = () => {
+        setUser(false);
+    };
+
+    useEffect(() => {
+        console.log('Estado del usuario:', user);
+        if (user === false) {
+            navigate('/login');
+        }
+    }, [user, navigate]);
 
     return(
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -14,15 +30,15 @@ const LoginTrue = (props) => {
                 </NavLink>
                 {" - "}
                 <NavLink className={ setActiveClass } to="/profile">
-                    Login
+                    Profile
                 </NavLink>
                 {" - "}
-                <NavLink className={ setActiveClass } to="logout">
+                <NavLink className="default" to="/" onClick={logout}>
                 Logout
                 </NavLink>
             </ul>
             <div className="d-flex" role="search">
-                <span className="text-white"><i className="fa-regular fa-money-bill-1 me-2"></i>Total: ${props.total}</span>
+                <Link to='/cart' className="text-white nav-link px-3"><i className="fa-solid fa-cart-shopping mx-2" aria-hidden="true"><span className="text-white mx-2">Total: ${props.total}</span></i></Link>    
             </div>
         </div>
     );

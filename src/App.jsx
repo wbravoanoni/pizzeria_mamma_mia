@@ -13,32 +13,40 @@ import NotFound from './pages/NotFound'
 import Profile from './pages/Profile'
 import CarritoProvider from "./context/CarritoContext";
 import  ApiProvider  from "./context/ApiContext";
+import { UserContext }  from "./context/UserContext";
+import UserProvider from "./context/UserContext";
+
 import  ApiContextPizza  from "./context/ApiContextPizza";
+
+import { Navigate } from 'react-router-dom';
+
 
 
 function App() {
 
+  const {user} = useContext(UserContext)
+
   return (
     <>
-    <div className='container-fluid'>
-      <ApiProvider>
-        <ApiContextPizza>
-          <CarritoProvider>
-            <Navbar carrito/>  
-                <Routes>
-                  <Route path='/' element={<Home/>}/>
-                  <Route path='/register' element={<RegisterPage/>}/>
-                  <Route path='/login' element={<LoginPage/>}/>
-                  <Route path='/cart' element={<Cart/>}/>
-                  <Route path="/pizza/:id" element={<Pizza />} />
-                  <Route path='/profile' element={<Profile/>}/>
-                  <Route path='/404' element={<NotFound/>}/>
-                  <Route path="*"  element={<NotFound/>}/>
-                </Routes>  
-                <Footer/>
-          </CarritoProvider>
-        </ApiContextPizza>
-      </ApiProvider> 
+      <div className='container-fluid'>
+        <ApiProvider>
+          <ApiContextPizza>
+            <CarritoProvider>
+              <Navbar carrito/>  
+                  <Routes>
+                    <Route path='/' element={<Home/>}/>
+                    <Route path='/cart' element={<Cart/>}/>
+                    <Route path="/pizza/:id" element={<Pizza />} />
+                    <Route path='/404' element={<NotFound/>}/>
+                    <Route path="*"  element={<NotFound/>}/>
+                    <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" replace />} />
+                    <Route path="/login" element={user ?  <Navigate to="/" replace /> : <LoginPage/>} />
+                    <Route path="/register" element={user ?  <Navigate to="/" replace /> : <RegisterPage/> } />
+                  </Routes>  
+                  <Footer/>
+            </CarritoProvider>
+          </ApiContextPizza>
+        </ApiProvider> 
     </div>
     </>
   )
