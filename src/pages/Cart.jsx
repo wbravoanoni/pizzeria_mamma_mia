@@ -98,8 +98,7 @@ const Cart = () => {
         )}
 
         <p className="d-block mx-auto">Total: ${total_formateado}</p>
-
-        {/* Solo mostrar el botón si el usuario está autenticado */}
+        
         {user && (
           <button
             onClick={handleCheckout}
