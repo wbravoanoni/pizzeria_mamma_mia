@@ -6,6 +6,11 @@ const CarritoProvider = ({ children }) => {
     const [carrito, setCarrito] = useState([]);
     const [total, setTotal] = useState(0);
 
+    const vaciarCarrito = () => {
+      setCarrito([]);
+      setTotal(0);
+    };
+
     const agregarAlCarrito = (producto) => {
         //verificar si el producto ya esta en el carrito
         const itemEnCarrito = carrito.find((item) => item.id === producto.id);
@@ -72,7 +77,8 @@ const CarritoProvider = ({ children }) => {
                 eliminarDelCarrito,
                 aumentarCantidad,
                 disminuirCantidad,
-                total
+                total,
+                vaciarCarrito
                 }}>
             {children}
             </CarritoContext.Provider>

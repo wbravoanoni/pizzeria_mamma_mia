@@ -1,70 +1,119 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState } from "react";
+import { CarritoContext } from "../context/CarritoContext";
+import { UserContext } from "../context/UserContext";
 
-const Checkout = () => {
-    const [carrito, setCarrito] = useState([]);
+const Cart = () => {
+  const { user } = useContext(UserContext);
+  const {
+    carrito,
+    eliminarDelCarrito,
+    aumentarCantidad,
+    disminuirCantidad,
+    total,
+  } = useContext(CarritoContext);
 
-    // Supongamos que el carrito se almacena en localStorage o viene de otro componente
-    useEffect(() => {
-        const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-        setCarrito(storedCart);
-    }, []);
+  const [successMessage, setSuccessMessage] = useState(""); // Estado para mostrar mensaje de éxito
 
-    // Función para enviar el carrito al backend
-    const enviarCarrito = async () => {
-        try {
-            // Obtener el token JWT desde localStorage, si es necesario
-            const token = localStorage.getItem("token_jwt");
+  let total_formateado = total.toLocaleString("es-CL");
 
-            // Verifica si tienes productos en el carrito
-            if (carrito.length === 0) {
-                console.log("El carrito está vacío");
-                return;
-            }
+  const handleCheckout = async () => {
+    try {
+      const response = await fetch("/api/checkouts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({
+          userId: user?.id, 
+          products: carrito.map((producto) => ({
+            id: producto.id,
+            name: producto.name,
+            price: producto.price,
+            quantity: producto.cant,
+          })),
+          total: total, // Monto total del carrito
+        }),
+      });
 
-            const response = await fetch("http://localhost:5000/api/checkout", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`, // Enviar el token JWT
-                },
-                body: JSON.stringify({
-                    cart: carrito, // Enviar el carrito al backend
-                }),
-            });
+      if (!response.ok) {
+        throw new Error("Error en la solicitud de checkout");
+      }
 
-            if (!response.ok) {
-                throw new Error("Error en la solicitud de checkout");
-            }
+      const data = await response.json();
 
-            const data = await response.json();
-            console.log("Respuesta del backend:", data);
+      // Mostrar mensaje de éxito
+      setSuccessMessage("¡Compra realizada con éxito!");
 
-            // Si la respuesta es exitosa, podrías limpiar el carrito
-            localStorage.removeItem("cart");
-            setCarrito([]); // Limpiar el estado del carrito
-            alert("Carrito enviado con éxito");
-        } catch (error) {
-            console.error("Error al enviar el carrito:", error);
-            alert("Hubo un error al procesar el checkout.");
-        }
-    };
+      // Vaciar el carrito o realizar otras acciones necesarias aquí
+    } catch (error) {
+        console.error("Error durante el checkout:", error);
+        alert("Hubo un problema al realizar la compra. Inténtalo nuevamente.");
+    }
+  };
 
-    return (
-        <div>
-            <h1>Checkout</h1>
-            {/* Muestra el contenido del carrito */}
-            <ul>
-                {carrito.map((item, index) => (
-                    <li key={index}>
-                        {item.name} - {item.quantity} unidades - ${item.price}
-                    </li>
-                ))}
-            </ul>
+  return (
+    <div>
+      <div className="row">
+        <h1 className="text-center mb-4">Carrito</h1>
 
-            {/* Botón para enviar el carrito al backend */}
-            <button onClick={enviarCarrito}>Enviar Carrito al Backend</button>
+        {carrito.length === 0 ? (
+          <p>El carrito está vacío</p>
+        ) : (
+          carrito.map((producto) => (
+            <div key={producto.id}>
+              <ul>
+                {producto.img && (
+                  <li className="list-unstyled">
+                    <img src={producto.img} alt="" width={200} />
+                  </li>
+                )}
+                {producto.name && (
+                  <li className="list-unstyled">Pizza {producto.name}</li>
+                )}
+                {producto.price && (
+                  <li className="list-unstyled">
+                    $ {(producto.price * producto.cant).toLocaleString("es-CL")}
+                  </li>
+                )}
+                {producto.cant && (
+                  <li className="list-unstyled">Cantidad: {producto.cant}</li>
+                )}
+                {producto.name && (
+                  <li
+                    onClick={() => aumentarCantidad(producto)}
+                    className="list-unstyled btn btn-success mx-2"
+                  >
+                    Agregar
+                  </li>
+                )}
+                {producto.name && (
+                  <li
+                    onClick={() => disminuirCantidad(producto)}
+                    className="list-unstyled btn btn-danger"
+                  >
+                    Eliminar
+                  </li>
+                )}
+              </ul>
+            </div>
+          ))
+        )}
+
+        <p className="d-block mx-auto">Total: ${total_formateado}</p>
+        {user && (
+            <button
+                onClick={handleCheckout}
+                className="btn btn-warning px-5 mt-5 d-block mx-auto"
+            >
+            Pagar
+            </button>
+        )}
+
+        {successMessage && <p className="text-success">{successMessage}</p>}
         </div>
+    </div>
     );
 };
 
-export default Checkout;
+export default Cart;
