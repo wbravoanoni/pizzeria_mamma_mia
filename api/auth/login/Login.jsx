@@ -26,6 +26,7 @@ const Login = () => {
         localStorage.setItem("token", data.token);
         setUser(true);
     };
+    
 return (
 <form onSubmit={handleSubmit}>
     <input
