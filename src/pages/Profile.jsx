@@ -1,17 +1,29 @@
-import React, { useState,useEffect } from "react";
+import { useEffect, useState } from "react";
+    const Profile = () => {
+    const [user, setUser] = useState(null);
 
-const Profile = () =>{
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        
+        if (token) {
+            fetch("http://localhost:5000/api/auth/me", {
+            headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        })
+        .then((response) => response.json())
+        .then((data) => setUser(data));
+        }
+    }, []);
+    
     return (
-            <div className="row my-5">
-                <div className="offset-3 col-6">
-                    <h1>Profile</h1>
-                    <label htmlFor="">Email</label>
-                    <input className="form-control" type="text" defaultValue ="ejemplo@mail.cl" />
-                    <button className="btn btn-danger my-5">Cerrar Sesión</button>
-                </div>
-                
-            </div>
-        );
-}
-
+<div>
+    {user ? (
+<p>Email: {user.email}</p>
+    ) : (
+<p>Please login to view your profile.</p>
+    )}
+    </div>
+); 
+};
 export default Profile;

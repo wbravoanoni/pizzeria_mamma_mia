@@ -13,6 +13,7 @@ const LoginTrue = (props) => {
 
     const logout = () => {
         setUser(false);
+        localStorage.removeItem("token");
     };
 
     useEffect(() => {

@@ -7,6 +7,7 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
+import Login from '../api/auth/login/Login'
 import Cart from './pages/Cart'
 import Pizza from './pages/Pizza'
 import NotFound from './pages/NotFound'
@@ -40,7 +41,7 @@ function App() {
                     <Route path='/404' element={<NotFound/>}/>
                     <Route path="*"  element={<NotFound/>}/>
                     <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" replace />} />
-                    <Route path="/login" element={user ?  <Navigate to="/" replace /> : <LoginPage/>} />
+                    <Route path="/login" element={user ?  <Navigate to="/" replace /> : <Login/>} />
                     <Route path="/register" element={user ?  <Navigate to="/" replace /> : <RegisterPage/> } />
                   </Routes>  
                   <Footer/>
